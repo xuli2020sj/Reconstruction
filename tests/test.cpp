@@ -5,6 +5,8 @@ using namespace std;
 
 struct cell {
     size_t index;
+    double activity;
+
 };
 
 class Grid {
@@ -14,6 +16,7 @@ private:
     double packageYLen = 1926;
     double packageZLen = 1331;
     int gridNumOfX = 5, gridNumOfY = 4, gridNumOfZ = 3;
+
 
 };
 
