@@ -91,7 +91,7 @@ int main() {
 
 void calculate() {
     Calculation CalculationB;
-    CalculationB.TypeOfCal=0;//基础数据和后处理一起计算
+    CalculationB.TypeOfCal=0;
     CalculationB.IsOnCal= true;
 
     std::chrono::steady_clock::time_point t1 = std::chrono::steady_clock::now();
