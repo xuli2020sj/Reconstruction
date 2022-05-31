@@ -34,7 +34,7 @@ struct det {
 class Grid {
 private:
     double totalActivity_BiCGSTAB = 0.;
-    double distanceFromPackage = 500;
+//    double distanceFromPackage = 500;
     std::vector<double> pos = {0,500,0};
     double packageXLen = 2438;
     double packageYLen = 1926. / 2;
@@ -51,6 +51,7 @@ private:
 
     std::vector<det*> detList;
     std::vector<std::vector<double>> effi;
+    void initDetEffi();
 public:
     Grid();
     Grid(std::vector<double> _splitX, std::vector<double> _splitY, std::vector<double> _splitZ, std::vector<double> detYPosList);
@@ -60,6 +61,7 @@ public:
     void reconstruction_BiCGSTAB();
     void showAllCell();
     void showAllDet();
+    std::vector<std::vector<int>> generateMotionPath();
 };
 
 #endif //DETECTION_GRIDCAL_H

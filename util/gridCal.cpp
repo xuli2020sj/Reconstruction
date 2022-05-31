@@ -160,6 +160,10 @@ void Grid::setEffi(std::vector<std::vector<double>> eff) {
     effi = std::move(eff);
 }
 
+void Grid::initDetEffi() {
+
+}
+
 int main() {
     spdlog::info("Welcome to Calculation!");
     auto grid = Grid();

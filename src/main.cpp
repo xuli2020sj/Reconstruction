@@ -47,15 +47,15 @@ int main() {
     MatrixXd C = MatrixXd::Zero(gridNumOfZ, gridNumOfX);
     MatrixXd A = MatrixXd::Zero(15, 1);
     MatrixXd E = MatrixXd::Zero(15, 15);
-//    C  <<   0,	7.45E-07,	7.00E-07,	6.05E-07,	0.00E+00,
-//            0,	6.55E-07,	4.89E-06,	6.10E-07,	0,
-//            0,	6.10E-07,	7.15E-07,	6.55E-07,	0.00E+00;
+    C  <<   0,	7.45E-07,	7.00E-07,	6.05E-07,	0.00E+00,
+            0,	6.55E-07,	4.89E-06,	6.10E-07,	0,
+            0,	6.10E-07,	7.15E-07,	6.55E-07,	0.00E+00;
 //    C  <<   0,	6.5E-07,	4.885E-06,	6.1E-07,	0.00E+00,
 //            0,	6.1E-07,	7.1E-07,	6.55E-07,	0,
 //            0,	0,	0,	0,	0.00E+00;
-    C  <<   0,	7.00E-08,	7.00E-08,	7.00E-08,	0,
-            0,	7.00E-08,	1.1E-07,	7.00E-08,	0,
-            0,	7.00E-08,	7.00E-08,	7.00E-08,	0.00E+00;
+//    C  <<   0,	7.00E-08,	7.00E-08,	7.00E-08,	0,
+//            0,	7.00E-08,	1.1E-07,	7.00E-08,	0,
+//            0,	7.00E-08,	7.00E-08,	7.00E-08,	0.00E+00;
     C = C * 1e8;
     C.resize(15,1);
     cout << C << endl;
@@ -75,15 +75,22 @@ int main() {
     cout << E1 << endl;
 
 
-//
+
     BiCGSTAB<SparseMatrix<double>> solver;
     solver.compute(E1);
     A = solver.solve(C);
     std::cout << "#iterations:     " << solver.iterations() << std::endl;
     std::cout << "estimated error: " << solver.error()      << std::endl;
-//    A = E.colPivHouseholderQr().solve(C);
     std::cout << "The activity matrix is:\n" << A << std::endl;
     std::cout << "The total activity is:\n" << A.sum() << std::endl;
+
+//    ConjugateGradient<SparseMatrix<double>, Lower|Upper> solver;
+//    solver.compute(E1);
+//    A = solver.solve(C);
+//    std::cout << "#iterations:     " << solver.iterations() << std::endl;
+//    std::cout << "estimated error: " << solver.error()      << std::endl;
+//    std::cout << "The activity matrix is:\n" << A << std::endl;
+//    std::cout << "The total activity is:\n" << A.sum() << std::endl;
 
 }
 
