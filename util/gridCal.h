@@ -55,13 +55,15 @@ private:
 public:
     Grid();
     Grid(std::vector<double> _splitX, std::vector<double> _splitY, std::vector<double> _splitZ, std::vector<double> detYPosList);
+    Grid(std::vector<double> _splitX, std::vector<double> _splitY, std::vector<double> _splitZ,
+         std::vector<double> detYPosList, std::vector<double> _pos, std::vector<double> _gridNum3d, std::vector<double> _packageLen3d);
     void initDetList(std::vector<double> detYPosList);
     void setEffi(std::vector<std::vector<double>> eff);
     void reconstruction_MLEM();
     void reconstruction_BiCGSTAB();
     void showAllCell();
     void showAllDet();
-    std::vector<std::vector<int>> generateMotionPath();
+    std::vector<std::vector<double>> generateMotionPath();
 };
 
 #endif //DETECTION_GRIDCAL_H

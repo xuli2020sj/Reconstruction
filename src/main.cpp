@@ -43,6 +43,25 @@ void cal(MatrixXd& E, int x, int z, int col) {
 //    cout << E << endl;
 }
 
+void mlem(MatrixXd E, MatrixXd A, MatrixXd C, size_t iterations) {
+    int num_a = A.rows();
+    cout << "A.size(): " << num_a << endl;
+    cout << "A.row(j): " <<  E.row(1) << endl;
+
+//    for (int i = 0; i < iterations; i++) {
+//        for (int j = 0; j < num_a; j++) {
+//            A.row(j) = A.row(j)*C.row(j)/E.row(j).dot(A);
+////            A(j,0) = A(j,0)*C(j,0) / E.row(j).dot(A);
+//        }
+//    }
+//
+//    std::cout << "MLEM_________________________" << std::endl;
+//    std::cout << "#iterations: " << iterations << std::endl;
+////    std::cout << "estimated error: " << solver.error()      << std::endl;
+//    std::cout << "The activity matrix is:\n" << A << std::endl;
+//    std::cout << "The total activity is:\n" << A.sum() << std::endl;
+}
+
 int main() {
     MatrixXd C = MatrixXd::Zero(gridNumOfZ, gridNumOfX);
     MatrixXd A = MatrixXd::Zero(15, 1);
@@ -66,25 +85,20 @@ int main() {
             col++;
         }
     }
-    SparseMatrix<double> E1(15, 15);
-    for (int i = 0; i < 15; i++) {
-        for (int j = 0; j < 15; j++) {
-            if (E(i,j) != 0) E1.insert(i,j) = E(i,j);
-        }
-    }
-    cout << E1 << endl;
+
+    mlem(E,A,C,10);
 
 
-
-    BiCGSTAB<SparseMatrix<double>> solver;
-    solver.compute(E1);
-    A = solver.solve(C);
-    std::cout << "#iterations:     " << solver.iterations() << std::endl;
-    std::cout << "estimated error: " << solver.error()      << std::endl;
-    std::cout << "The activity matrix is:\n" << A << std::endl;
-    std::cout << "The total activity is:\n" << A.sum() << std::endl;
-
-//    ConjugateGradient<SparseMatrix<double>, Lower|Upper> solver;
+//    SparseMatrix<double> E1(15, 15);
+//    for (int i = 0; i < 15; i++) {
+//        for (int j = 0; j < 15; j++) {
+//            if (E(i,j) != 0) E1.insert(i,j) = E(i,j);
+//        }
+//    }
+//    cout << E1 << endl;
+//
+//
+//    BiCGSTAB<SparseMatrix<double>> solver;
 //    solver.compute(E1);
 //    A = solver.solve(C);
 //    std::cout << "#iterations:     " << solver.iterations() << std::endl;
@@ -93,6 +107,7 @@ int main() {
 //    std::cout << "The total activity is:\n" << A.sum() << std::endl;
 
 }
+
 
 
 
